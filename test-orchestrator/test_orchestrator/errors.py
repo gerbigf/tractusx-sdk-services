@@ -76,6 +76,7 @@ class Error(Enum):
     CONNECTOR_UNAVAILABLE = auto()
     FEEDBACK_COULD_NOT_BE_SENT = auto()
     TOO_MANY_ASSETS_FOUND = auto()
+    CATALOG_FETCH_FAILED = auto()
 
 
 #: A dictionary of non-default error codes.
@@ -111,6 +112,7 @@ non_default_http_codes = {
     Error.CONNECTOR_UNAVAILABLE: 502,
     Error.FEEDBACK_COULD_NOT_BE_SENT: 502,
     Error.TOO_MANY_ASSETS_FOUND: 409,
+    Error.CATALOG_FETCH_FAILED: 500
 }
 
 

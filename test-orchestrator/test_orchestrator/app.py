@@ -33,7 +33,8 @@ from test_orchestrator.api import (
     base_test_cases,
     cert_validation,
     industry_test_cases,
-    special_characteristics
+    special_characteristics,
+    product_carbon_footprint
 )
 from test_orchestrator.cache import create_cache_provider
 from test_orchestrator.errors import (
@@ -105,6 +106,10 @@ def create_app():
     app.include_router(special_characteristics.router,
                        prefix='/test-cases/special-characteristics/v1',
                        tags=['Special Characteristics Tests'])
+    
+    app.include_router(product_carbon_footprint.router,
+                       prefix='/test-cases/product-carbon-footprint/v1',
+                       tags=['Product Carbon Footprint Tests'])
 
     app.get('/_/health', status_code=200)(health)
 
