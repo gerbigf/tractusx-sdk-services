@@ -111,7 +111,7 @@ def validate_notification_payload(payload: Dict):
                         errors.append(f"Missing field '{key}' in listOfEvents[{i}]")
 
                 catena_id = event.get('catenaXId')
-                
+
                 if catena_id and not uuid_pattern.match(catena_id):
                     errors.append(f'Invalid UUID format in listOfEvents[{i}].catenaXId: {catena_id}')
 
