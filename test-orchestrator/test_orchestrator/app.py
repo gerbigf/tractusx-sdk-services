@@ -33,7 +33,8 @@ from test_orchestrator.api import (
     base_test_cases,
     cert_validation,
     industry_test_cases,
-    special_characteristics
+    special_characteristics,
+    traceability_test
 )
 from test_orchestrator.errors import (
     HTTPError,
@@ -41,8 +42,9 @@ from test_orchestrator.errors import (
     ValidationException,
     validation_exception_handler
 )
+from test_orchestrator.logging.log_manager import LoggingManager
 
-logger = logging.getLogger(__name__)
+logger = LoggingManager.get_logger(__name__)
 
 
 
@@ -104,6 +106,10 @@ def create_app():
     app.include_router(special_characteristics.router,
                        prefix='/test-cases/special-characteristics/v1',
                        tags=['Special Characteristics Tests'])
+
+    app.include_router(traceability_test.router,
+                       prefix='/test-cases/traceability/v1',
+                       tags=['Traceability Tests'])
 
     app.get('/_/health', status_code=200)(health)
 
