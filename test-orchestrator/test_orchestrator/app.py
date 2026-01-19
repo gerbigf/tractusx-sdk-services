@@ -34,7 +34,8 @@ from test_orchestrator.api import (
     cert_validation,
     industry_test_cases,
     special_characteristics,
-    product_carbon_footprint
+    product_carbon_footprint,
+    traceability_test
 )
 from test_orchestrator.cache import create_cache_provider
 from test_orchestrator.errors import (
@@ -43,8 +44,9 @@ from test_orchestrator.errors import (
     ValidationException,
     validation_exception_handler
 )
+from test_orchestrator.logging.log_manager import LoggingManager
 
-logger = logging.getLogger(__name__)
+logger = LoggingManager.get_logger(__name__)
 
 
 
@@ -110,6 +112,10 @@ def create_app():
     app.include_router(product_carbon_footprint.router,
                        prefix='/test-cases/product-carbon-footprint/v1',
                        tags=['Product Carbon Footprint Tests'])
+
+    app.include_router(traceability_test.router,
+                       prefix='/test-cases/traceability/v1',
+                       tags=['Traceability Tests'])
 
     app.get('/_/health', status_code=200)(health)
 
