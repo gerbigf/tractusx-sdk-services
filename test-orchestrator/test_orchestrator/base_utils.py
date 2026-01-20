@@ -120,14 +120,14 @@ async def get_dataplane_access(counter_party_address: str,
                          policy_validation: Optional[bool] = None,
                          timeout: int = 80):
     """
-    Retrieves the Digital Twin Registry (DTR) access details.
+    Retrieves the access details.
 
     This function performs a sequence of API calls to:
-    1. Query the catalog from the DT Pull Service.
+    1. Query the catalog.
     2. Initiate a negotiation for the retrieved catalog data.
     3. Check the negotiation state.
-    4. Execute a transfer process to retrieve DTR access details.
-    5. Fetch the endpoint and authorization information for DTR access.
+    4. Execute a transfer process to retrieve access details.
+    5. Fetch the endpoint and authorization information for access.
 
     :param operand_left: The left operand for filtering the catalog query.
     :param operand_right: The right operand for filtering the catalog query.
@@ -135,7 +135,7 @@ async def get_dataplane_access(counter_party_address: str,
     :param counter_party_id: The Business Partner Number for the transaction.
     :param offset: (Optional) The offset for pagination. Default is 0.
     :param limit: (Optional) The maximum number of results to retrieve. Default is 50.
-    :return: A tuple containing the endpoint URL and authorization credentials for DTR access.
+    :return: A tuple containing the endpoint URL and authorization credentials for access.
     """
 
     catalog_response = await get_catalog(
