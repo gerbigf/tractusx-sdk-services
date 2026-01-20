@@ -89,7 +89,7 @@ async def init_negotiation(counter_party_address: str,
     """
     Initiate a contract negotiation using the DT Pull Service.
 
-    Wrapped from get_dtr_access to provide a reusable step and clearer separation of concerns.
+    Wrapped from get_dataplane_access to provide a reusable step and clearer separation of concerns.
     Mirrors existing error handling by mapping any HTTPError from the request to CONTRACT_NEGOTIATION_FAILED.
     """
     try:
@@ -110,7 +110,7 @@ async def init_negotiation(counter_party_address: str,
                     'for troubleshooting.')
 
 
-async def get_dtr_access(counter_party_address: str,
+async def get_dataplane_access(counter_party_address: str,
                          counter_party_id: str,
                          operand_left: Optional[str] = None,
                          operator: Optional[str] = 'like',
@@ -247,7 +247,7 @@ async def get_data_address(counter_party_address: str,
     """
     Execute the transfer process query and fetch the EDR data address.
 
-    This function wraps the two final steps of get_dtr_access:
+    This function wraps the two final steps of get_dataplane_access:
     - fetch_transfer_process: query for transfer process by contractNegotiationId
     - GET /edr/data-address/: obtain endpoint and authorization by transfer_process_id
 
@@ -489,7 +489,7 @@ async def submodel_validation(
         submodel_info = fetch_submodel_info(correct_element, semantic_id)
 
         # Gain access to the submodel link
-        (dtr_url_subm, dtr_key_subm, policy_validation_outcome_not_used) = await get_dtr_access(
+        (dtr_url_subm, dtr_key_subm, policy_validation_outcome_not_used) = await get_dataplane_access(
             counter_party_address=submodel_info['subm_counterparty'],
             counter_party_id=counter_party_id,
             operand_left=submodel_info['subm_operandleft'],

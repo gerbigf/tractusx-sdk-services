@@ -71,11 +71,11 @@ async def test_semantic_id_not_found(json_validator_mock, schema_finder_mock):
 @patch("test_orchestrator.base_utils.schema_finder")
 @patch("test_orchestrator.base_utils.json_validator")
 @patch("test_orchestrator.base_utils.fetch_submodel_info")
-@patch("test_orchestrator.base_utils.get_dtr_access")
+@patch("test_orchestrator.base_utils.get_dataplane_access")
 @patch("test_orchestrator.base_utils.httpx.get")
 async def test_http_error_on_submodel_download(
     httpx_get_mock,
-    get_dtr_access_mock,
+    get_dataplane_access_mock,
     fetch_submodel_info_mock,
     json_validator_mock,
     schema_finder_mock,
@@ -97,7 +97,7 @@ async def test_http_error_on_submodel_download(
         "subm_operandright": "opR"
     }
 
-    get_dtr_access_mock.return_value = ("url", "api-key", None)
+    get_dataplane_access_mock.return_value = ("url", "api-key", None)
 
     httpx_get_mock.return_value = MagicMock(status_code=404)
 
@@ -111,13 +111,13 @@ async def test_http_error_on_submodel_download(
 @patch("test_orchestrator.base_utils.schema_finder")
 @patch("test_orchestrator.base_utils.json_validator")
 @patch("test_orchestrator.base_utils.fetch_submodel_info")
-@patch("test_orchestrator.base_utils.get_dtr_access")
+@patch("test_orchestrator.base_utils.get_dataplane_access")
 @patch("test_orchestrator.base_utils.httpx.get")
 @patch("test_orchestrator.base_utils.submodel_schema_finder")
 async def test_successful_validation(
     schema_finder_submodel_mock,
     httpx_get_mock,
-    get_dtr_access_mock,
+    get_dataplane_access_mock,
     fetch_submodel_info_mock,
     json_validator_mock,
     schema_finder_mock,
@@ -143,7 +143,7 @@ async def test_successful_validation(
         "subm_operandright": "opR"
     }
 
-    get_dtr_access_mock.return_value = ("url", "api-key", None)
+    get_dataplane_access_mock.return_value = ("url", "api-key", None)
 
     httpx_get_mock.return_value = MagicMock(
         status_code=200,
