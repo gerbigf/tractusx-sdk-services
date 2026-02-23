@@ -28,6 +28,7 @@ import json
 import logging
 import time
 from typing import Dict, Optional
+from weakref import proxy
 
 from tractusx_sdk.dataspace.services import BaseEdcService
 from tractusx_sdk.dataspace.models.connector.model_factory import ModelFactory
